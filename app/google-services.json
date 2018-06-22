@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "526711564874",
+    "firebase_url": "https://foodselregio.firebaseio.com",
+    "project_id": "foodselregio",
+    "storage_bucket": "foodselregio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526711564874:android:f1140cf4b414fd9a",
+        "android_client_info": {
+          "package_name": "com.joaquinalvidrez.foodselregio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526711564874-gbnp4uvfmim77ccquijr008fuj3sr48k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joaquinalvidrez.foodselregio",
+            "certificate_hash": "9f78053733d43832a7b82a652d23a02e1c3fe6c7"
+          }
+        },
+        {
+          "client_id": "526711564874-4ehm3dsbdpfcc7dmne89eeac73s4ss36.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "526711564874-4ehm3dsbdpfcc7dmne89eeac73s4ss36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-2YFx_XT3lo2y9-ow4bE3Xna7Iv32G-A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526711564874-4ehm3dsbdpfcc7dmne89eeac73s4ss36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
