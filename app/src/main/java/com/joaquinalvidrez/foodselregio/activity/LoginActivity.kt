@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.joaquinalvidrez.foodselregio.R
 import com.joaquinalvidrez.foodselregio.fragment.RegisterDialogFragment
@@ -34,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
             } else {
                 showMessage("Signed-in as ${user.email}")
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             }
 
         }
@@ -61,7 +61,6 @@ class LoginActivity : AppCompatActivity() {
         edit_text_login_email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 button_login_sign_in.isEnabled = areFieldsFilled
-                button_login_register.isEnabled = areFieldsFilled
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -75,7 +74,6 @@ class LoginActivity : AppCompatActivity() {
         edit_text_login_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 button_login_sign_in.isEnabled = areFieldsFilled
-                button_login_register.isEnabled = areFieldsFilled
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
