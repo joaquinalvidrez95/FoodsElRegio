@@ -9,9 +9,10 @@
     tools:context=".activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_requested_items"
+    <FrameLayout
+        android:id="@+id/frame_layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </android.support.constraint.ConstraintLayout>

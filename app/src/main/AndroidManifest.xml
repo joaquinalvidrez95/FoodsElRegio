@@ -22,8 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegistrationActivity" />
-        <activity android:name=".activity.RequestFoodActivity"></activity>
+        <!--<activity android:name=".activity.RegistrationActivity" />-->
+        <activity android:name=".activity.RequestFoodActivity" />
+        <activity android:name=".activity.LocationActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCH_A2h3AWvNUsH9s4c0sewSt6P6499Elo" />
     </application>
+
 
 </manifest>

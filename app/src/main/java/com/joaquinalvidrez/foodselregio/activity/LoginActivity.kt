@@ -46,13 +46,9 @@ class LoginActivity : AppCompatActivity() {
                         .getInstance()
                         .signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                showMessage("success")
-
-                            } else {
-//                                showMessage(context.getString(R.string.message_email_or_password_incorrect))
+                            if (!it.isSuccessful) {
+                                //                                showMessage(context.getString(R.string.message_email_or_password_incorrect))
                                 showMessage(it.exception?.message!!)
-
                             }
                         }
             }
@@ -92,7 +88,6 @@ class LoginActivity : AppCompatActivity() {
 //                    putExtra(EXTRA_PASSWORD, password)
 //                })
             }
-            isEnabled = areFieldsFilled
         }
     }
 

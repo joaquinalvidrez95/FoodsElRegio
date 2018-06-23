@@ -2,26 +2,18 @@ package com.joaquinalvidrez.foodselregio.activity
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.joaquinalvidrez.foodselregio.R
-import com.joaquinalvidrez.foodselregio.adapter.FoodAdapter
-import com.joaquinalvidrez.foodselregio.model.Food
+import com.joaquinalvidrez.foodselregio.fragment.FoodRequestsFragment
+import com.joaquinalvidrez.foodselregio.fragment.RequestFoodFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,8 +23,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            supportFragmentManager.beginTransaction().replace(R.id.frame_layout_main, RequestFoodFragment()).commit()
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -41,33 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        val menu = ArrayList<Food>()
-        val adapter = FoodAdapter(menu)
-        FirebaseDatabase.getInstance().getReference("Menu").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
 
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                p0.children.forEach {
-                    it.children.forEach {
-                        val food = it.getValue(Food::class.java)
-                        food?.let {
-                            Log.e(javaClass.name, food.toString())
-                            menu.add(food)
-
-                        }
-
-                    }
-                }
-                adapter.notifyDataSetChanged()
-            }
-
-        })
-        recycler_view_requested_items.apply {
-            this.adapter = adapter
-            layoutManager = LinearLayoutManager(context)
-        }
     }
 
     override fun onBackPressed() {
@@ -96,29 +63,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
+
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
             R.id.action_menu_log_out -> {
                 FirebaseAuth.getInstance().signOut()
                 finish()
+            }
+            else -> {
+                val fragment: Fragment = when (item.itemId) {
+                    R.id.action_menu_requests -> {
+                        FoodRequestsFragment()
+                    }
+//                    R.id.action_menu_completed_requests -> {
+//
+//
+//                    }
+                    else -> {
+                        Fragment()
+                    }
+                }
+                supportFragmentManager.beginTransaction().replace(R.id.frame_layout_main, fragment).commit()
+
             }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+
     }
 }
